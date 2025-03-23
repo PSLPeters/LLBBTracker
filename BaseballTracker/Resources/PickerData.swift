@@ -37,7 +37,8 @@ let arrAppIcons =
         appIcon(appIconName: "AppIcon3", imageName: "IconImage3", description: "Home Run Derby"),
         appIcon(appIconName: "AppIcon4", imageName: "IconImage4", description: "Slugger"),
         appIcon(appIconName: "AppIcon5", imageName: "IconImage5", description: "Grand Slam"),
-        appIcon(appIconName: "AppIcon6", imageName: "IconImage6", description: "Bases Loaded")
+        appIcon(appIconName: "AppIcon6", imageName: "IconImage6", description: "Bases Loaded"),
+        appIcon(appIconName: "AppIcon7", imageName: "IconImage7", description: "BaseBilly")
     ]
 
 // MARK: App Tints

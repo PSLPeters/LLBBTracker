@@ -16,12 +16,13 @@ struct ReleaseNotesView: View {
     var body: some View {
         ScrollView {
             Text(
-                
-                // ***
-                // This dynamic build number needs moved each time a new section is added!
-                // ***
             """
-            **Build \(Constants.appVersionBuildString)**:
+            **Build 1.1 (1)**:
+            - New icon added - "BaseBilly"!
+            - Added Rate App button to easily rate the app in the App Store.
+            - Added Share App button to easily share the app with friends and family.
+            
+            **Build 1.0 (1)**:
             - \(Image(systemName: "baseball")) Initial release of \(Constants.appName.replacingOccurrences(of: "©", with: ""))!
             """)
             .frame(maxWidth: .infinity, alignment: .topLeading)

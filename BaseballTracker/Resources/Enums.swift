@@ -13,14 +13,19 @@ enum Constants {
     static let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     static let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
     static let appVersionBuildString = "\(Constants.appVersion!) (\(Constants.appBuild!))"
+    static let appAppStoreID = "6743416831"
 }
 
 // MARK: Settings Constants
 enum ConstantsSettings {
-    static let settingsAboutHelpContactEmailAddress = "mpappshelp@icloud.com"
-    static let settingsAboutHelpContactSubjectLine = "\(Constants.appName.replacingOccurrences(of: "©", with: "")) Feedback"
-    static let settingsAboutHelpContactBody = "\n\nBuild: \(Constants.appVersionBuildString)"
     static let settingsAboutHelpPrivacyPolicyURL = "https://www.privacypolicies.com/live/d1790d80-dcb5-4be4-8a50-832566a0a2cb"
+    
+    static let settingsAboutFeedbackContactEmailAddress = "mpappshelp@icloud.com"
+    static let settingsAboutFeedbackContactSubjectLine = "\(Constants.appName.replacingOccurrences(of: "©", with: "")) Feedback"
+    static let settingsAboutFeedbackContactBody = "\n\nBuild: \(Constants.appVersionBuildString)"
+    
+    static let settingsAboutFeedbackRateAppURL = "itms-apps://itunes.apple.com/app/id\(Constants.appAppStoreID)?mt=8&action=write-review"
+    static let settingsAboutFeedbackShareAppURL = "https://apps.apple.com/us/app/llbb-tracker/id\(Constants.appAppStoreID)"
     
     static let settingsAboutAcknowledgementsDeveloperGitHubURL = "https://github.com/PSLPeters"
     static let settingsAboutAcknowledgementsPitchingGuidelinesWebsite = "littleleague.org"

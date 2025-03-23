@@ -30,11 +30,22 @@ struct SettingsAboutView: View {
                     } label: {
                         Label("Release Notes", systemImage: "book")
                     }
-                    Link(destination: URL(string: "mailto:\(ConstantsSettings.settingsAboutHelpContactEmailAddress)?subject=\(ConstantsSettings.settingsAboutHelpContactSubjectLine)&body=\(ConstantsSettings.settingsAboutHelpContactBody)")!) {
-                        Label("Contact", systemImage: "envelope")
-                    }
                     Link(destination: URL(string: ConstantsSettings.settingsAboutHelpPrivacyPolicyURL)!) {
                         Label("Privacy Policy", systemImage: "safari")
+                    }
+                }
+                .tint(.secondary)
+                Section("Feedback") {
+                    Link(destination: URL(string: "mailto:\(ConstantsSettings.settingsAboutFeedbackContactEmailAddress)?subject=\(ConstantsSettings.settingsAboutFeedbackContactSubjectLine)&body=\(ConstantsSettings.settingsAboutFeedbackContactBody)")!) {
+                        Label("Contact", systemImage: "envelope")
+                    }
+                    Button {
+                        UIApplication.shared.open(URL(string : ConstantsSettings.settingsAboutFeedbackRateAppURL)!)
+                    } label: {
+                        Label("Rate App", systemImage: "star")
+                    }
+                    ShareLink(item: URL(string: ConstantsSettings.settingsAboutFeedbackShareAppURL)!) {
+                        Label("Share App", systemImage: "square.and.arrow.up")
                     }
                 }
                 .tint(.secondary)
