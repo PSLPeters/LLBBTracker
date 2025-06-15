@@ -65,10 +65,12 @@ struct GamesUpdateView: View {
                     }
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Done")
-                    {
+                    Button {
                         dismiss()
                         doHaptics ? closeUpdateGameHapticToggle.toggle() : nil
+                    } label: {
+                        Image(systemName: "checkmark")
+
                     }
                     .sensoryFeedback(.impact(weight: .medium), trigger: closeUpdateGameHapticToggle)
                 }

@@ -17,6 +17,9 @@ struct ReleaseNotesView: View {
         ScrollView {
             Text(
             """
+            **Build 1.2 (0)**:
+            - Welcome to iOS 26! Updated elements throughout the app to support Liquid Glass!
+            
             **Build 1.1 (1)**:
             - New icon added - "BaseBilly", courtesy of DabbleArt!
             - Added Rate App button to allow you to easily rate the app in the App Store.

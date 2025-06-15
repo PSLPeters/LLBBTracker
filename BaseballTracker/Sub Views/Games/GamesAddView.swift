@@ -62,7 +62,7 @@ struct GamesAddView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
-                    Button("Cancel")
+                    Button("X")
                     {
                         if(doDataEntered)
                         {
@@ -72,6 +72,7 @@ struct GamesAddView: View {
                             doHaptics ? closeAddGameHapticToggle.toggle() : nil
                         }
                     }
+                    .font(.title2)
                     .alert(isPresented: $isShowingCloseAlert) {
                         Alert(title: Text(ConstantsAlerts.cancelAddGameAlertTitle),
                               message: Text(ConstantsAlerts.cancelAddGameAlertMessage),
@@ -81,29 +82,30 @@ struct GamesAddView: View {
                             doHaptics ? cancelAddGameHapticToggle.toggle() : nil
                         },
                               secondaryButton: .cancel(Text("No")) {
-                            
                         }
                         )
                     }
                     .sensoryFeedback(.error, trigger: cancelAddGameHapticToggle)
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Save")
-                    {
-                        let game = modelGame(
-                            gameHomeAwaySelectedIndex: gameHomeAwaySelectedIndex,
-                            gameDate: gameDate,
-                            gameOpponent: gameOpponent,
-                            gameAwayScore: gameAwayScore,
-                            gameHomeScore: gameHomeScore,
-                            gameWinLossString: gameWinLossString,
-                            gameAtVersusString: gameAtVersusString)
-                        context.insert(game)
-                        dismiss()
-                        doHaptics ? closeAddGameHapticToggle.toggle() : nil
+                    if(!gameOpponent.isEmpty && !gameAwayScore.isEmpty && !gameHomeScore.isEmpty) {
+                        Button {
+                            let game = modelGame(
+                                gameHomeAwaySelectedIndex: gameHomeAwaySelectedIndex,
+                                gameDate: gameDate,
+                                gameOpponent: gameOpponent,
+                                gameAwayScore: gameAwayScore,
+                                gameHomeScore: gameHomeScore,
+                                gameWinLossString: gameWinLossString,
+                                gameAtVersusString: gameAtVersusString)
+                            context.insert(game)
+                            dismiss()
+                            doHaptics ? closeAddGameHapticToggle.toggle() : nil
+                        } label: {
+                            Image(systemName: "checkmark")
+                        }
+                        .sensoryFeedback(.impact(weight: .medium), trigger: closeAddGameHapticToggle)
                     }
-                    .sensoryFeedback(.impact(weight: .medium), trigger: closeAddGameHapticToggle)
-                    .opacity(!gameOpponent.isEmpty && !gameAwayScore.isEmpty && !gameHomeScore.isEmpty ? 1 : 0)
                 }
             }
         }

@@ -141,10 +141,20 @@ struct GamesMainView: View {
                             }
                         , actions:
                             {
-                                Button("Add Game")
-                                {
-                                    doGameAddView = true
-                                    isShowingGamesFullScreenCover = true
+                                if #available(iOS 26.0, *) {
+                                    Button("Add Game")
+                                    {
+                                        doGameAddView = true
+                                        isShowingGamesFullScreenCover = true
+                                    }
+                                    .padding()
+                                    .glassEffect(.regular.interactive())
+                                } else {
+                                    Button("Add Game")
+                                    {
+                                        doGameAddView = true
+                                        isShowingGamesFullScreenCover = true
+                                    }
                                 }
                             }
                     )

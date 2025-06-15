@@ -10,6 +10,22 @@ import SwiftUI
 struct MainTabView: View {
     
     // MARK: AppStorage variables
+    @AppStorage("selectedMainTab") private var selectedMainTab = ""
+    
+    // MARK: Body
+    var body: some View {
+        if #available(iOS 26.0, *) {
+            StartTabView()
+                .tabBarMinimizeBehavior(.onScrollDown)
+        } else {
+            StartTabView()
+        }
+    }
+}
+
+struct StartTabView: View {
+
+    // MARK: AppStorage variables
     @AppStorage("selectedColorScheme") private var selectedColorScheme = "System"
     @AppStorage("selectedAppTintIndex") var selectedAppTintIndex = 0
     @AppStorage("selectedMainTab") private var selectedMainTab = ""

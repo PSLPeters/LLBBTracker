@@ -59,7 +59,7 @@ struct PitchersAddView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
-                    Button("Cancel")
+                    Button("X")
                     {
                         if(doDataEntered)
                         {
@@ -70,6 +70,7 @@ struct PitchersAddView: View {
                             doHaptics ? closeAddPitcherHapticToggle.toggle() : nil
                         }
                     }
+                    .font(.title2)
                     .alert(isPresented: $isShowingCloseAlert) {
                         Alert(title: Text(ConstantsAlerts.cancelAddPitcherAlertTitle),
                               message: Text(ConstantsAlerts.cancelAddPitcherAlertMessage),
@@ -80,29 +81,30 @@ struct PitchersAddView: View {
                             doHaptics ? cancelAddPitcherHapticToggle.toggle() : nil
                         },
                               secondaryButton: .cancel(Text("No")) {
-                            
                         }
                         )
                     }
                     .sensoryFeedback(.error, trigger: cancelAddPitcherHapticToggle)
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Save")
-                    {
-                        let pitcher = modelPitcher(
-                            pitcherDate: pitcherDate,
-                            pitcherName: pitcherName,
-                            pitcherAgeSelectedIndex: pitcherAgeSelectedIndex,
-                            pitcherCount: pitcherCount,
-                            pitcherDaysRest: pitcherDaysRest,
-                            pitcherCountPercentage: pitcherCountPercentage)
-                        context.insert(pitcher)
-                        dismiss()
-                        doPitcherAddView = false
-                        doHaptics ? closeAddPitcherHapticToggle.toggle() : nil
+                    if (!pitcherName.isEmpty && pitcherAgeSelectedIndex != 0) {
+                        Button {
+                            let pitcher = modelPitcher(
+                                pitcherDate: pitcherDate,
+                                pitcherName: pitcherName,
+                                pitcherAgeSelectedIndex: pitcherAgeSelectedIndex,
+                                pitcherCount: pitcherCount,
+                                pitcherDaysRest: pitcherDaysRest,
+                                pitcherCountPercentage: pitcherCountPercentage)
+                            context.insert(pitcher)
+                            dismiss()
+                            doPitcherAddView = false
+                            doHaptics ? closeAddPitcherHapticToggle.toggle() : nil
+                        } label: {
+                            Image(systemName: "checkmark")
+                        }
+                        .sensoryFeedback(.impact(weight: .medium), trigger: closeAddPitcherHapticToggle)
                     }
-                    .sensoryFeedback(.impact(weight: .medium), trigger: closeAddPitcherHapticToggle)
-                    .opacity(!pitcherName.isEmpty && pitcherAgeSelectedIndex != 0 ? 1 : 0)
                 }
             }
         }

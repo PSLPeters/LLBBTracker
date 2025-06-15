@@ -60,10 +60,12 @@ struct PitchersUpdateView: View {
                     }
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Done")
-                    {
+                    Button {
                         dismiss()
                         doHaptics ? closeUpdatePitcherHapticToggle.toggle() : nil
+                    } label: {
+                        Image(systemName: "checkmark")
+
                     }
                     .sensoryFeedback(.impact(weight: .medium), trigger: closeUpdatePitcherHapticToggle)
                 }

@@ -84,13 +84,24 @@ struct GamesCardView: View {
         VStack {
             List {
                 Section("Game Information \(Image(systemName: "info.circle"))", isExpanded: $isExpandedGameInfo) {
-                    Picker("HomeAway", selection: $gameHomeAwaySelectedIndex) {
-                        ForEach(arrGameHomeAway.indices, id:\.self) { index in
-                            let activeText = arrGameHomeAway[index]
-                            Text(activeText.text)
+                    if #available(iOS 26.0, *) {
+                        Picker("HomeAway", selection: $gameHomeAwaySelectedIndex) {
+                            ForEach(arrGameHomeAway.indices, id:\.self) { index in
+                                let activeText = arrGameHomeAway[index]
+                                Text(activeText.text)
+                            }
                         }
+                        .pickerStyle(.segmented)
+                        .glassEffect(.regular.interactive())
+                    } else {
+                        Picker("HomeAway", selection: $gameHomeAwaySelectedIndex) {
+                            ForEach(arrGameHomeAway.indices, id:\.self) { index in
+                                let activeText = arrGameHomeAway[index]
+                                Text(activeText.text)
+                            }
+                        }
+                        .pickerStyle(.segmented)
                     }
-                    .pickerStyle(.segmented)
                     DatePicker("Date - [\(gameDate.getDayOfWeek())]", selection: $gameDate, displayedComponents: .date)
                     LabeledContent("Opponent:") {
                         TextField("Enter here", text: $gameOpponent)

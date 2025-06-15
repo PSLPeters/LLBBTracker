@@ -79,7 +79,6 @@ struct PitchersMainView: View {
                 }
             }
             .navigationTitle("Pitchers")
-            .searchable(text: $searchTerm, prompt: "Search")
             .fullScreenCover(
                 isPresented: $isShowingPitcherFullScreenCover
             ) {
@@ -122,16 +121,27 @@ struct PitchersMainView: View {
                             }
                         , actions:
                             {
-                                Button("Add Pitcher")
-                                {
-                                    doPitcherAddView = true
-                                    isShowingPitcherFullScreenCover = true
+                                if #available(iOS 26.0, *) {
+                                    Button("Add Pitcher")
+                                    {
+                                        doPitcherAddView = true
+                                        isShowingPitcherFullScreenCover = true
+                                    }
+                                    .padding()
+                                    .glassEffect(.regular.interactive())
+                                } else {
+                                    Button("Add Pitcher")
+                                    {
+                                        doPitcherAddView = true
+                                        isShowingPitcherFullScreenCover = true
+                                    }
                                 }
                             }
                     )
                 }
             }
         }
+        .searchable(text: $searchTerm, prompt: "Search")
         .tint(arrAppTints[selectedAppTintIndex].color)
         .preferredColorScheme(selectedColorScheme == "System" ? nil : selectedColorScheme == "Dark" ? .dark : .light)
     }
