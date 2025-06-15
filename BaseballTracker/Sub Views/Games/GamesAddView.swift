@@ -62,8 +62,7 @@ struct GamesAddView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
-                    Button("X")
-                    {
+                    Button {
                         if(doDataEntered)
                         {
                             isShowingCloseAlert = true
@@ -71,8 +70,9 @@ struct GamesAddView: View {
                             dismiss()
                             doHaptics ? closeAddGameHapticToggle.toggle() : nil
                         }
+                    } label: {
+                        Image(systemName: "xmark")
                     }
-                    .font(.title2)
                     .alert(isPresented: $isShowingCloseAlert) {
                         Alert(title: Text(ConstantsAlerts.cancelAddGameAlertTitle),
                               message: Text(ConstantsAlerts.cancelAddGameAlertMessage),

@@ -59,8 +59,7 @@ struct PitchersAddView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
-                    Button("X")
-                    {
+                    Button {
                         if(doDataEntered)
                         {
                             isShowingCloseAlert = true
@@ -69,8 +68,9 @@ struct PitchersAddView: View {
                             doPitcherAddView = false
                             doHaptics ? closeAddPitcherHapticToggle.toggle() : nil
                         }
+                    } label: {
+                        Image(systemName: "xmark")
                     }
-                    .font(.title2)
                     .alert(isPresented: $isShowingCloseAlert) {
                         Alert(title: Text(ConstantsAlerts.cancelAddPitcherAlertTitle),
                               message: Text(ConstantsAlerts.cancelAddPitcherAlertMessage),
