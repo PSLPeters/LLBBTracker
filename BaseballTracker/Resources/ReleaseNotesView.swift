@@ -19,6 +19,7 @@ struct ReleaseNotesView: View {
             """
             **Build 1.2 (0)**:
             - Welcome to iOS 26! Updated elements throughout the app to support Liquid Glass!
+            - Changed Alerts to ConfirmationDialogs to utilize the iOS 26 design change making the selection easier for users.
             
             **Build 1.1 (1)**:
             - New icon added - "BaseBilly", courtesy of DabbleArt!

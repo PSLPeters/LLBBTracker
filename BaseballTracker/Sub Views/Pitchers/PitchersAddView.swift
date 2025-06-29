@@ -71,18 +71,19 @@ struct PitchersAddView: View {
                     } label: {
                         Image(systemName: "xmark")
                     }
-                    .alert(isPresented: $isShowingCloseAlert) {
-                        Alert(title: Text(ConstantsAlerts.cancelAddPitcherAlertTitle),
-                              message: Text(ConstantsAlerts.cancelAddPitcherAlertMessage),
-                              primaryButton: .destructive(Text(ConstantsAlerts.cancelAddPitcherAlertConfirmButtonTitle))
-                              {
+                    .confirmationDialog("Close Pitcher", isPresented: $isShowingCloseAlert) {
+                        Button(ConstantsConfirmationDialogs.cancelAddPitcherConfirmationDialogConfirmButtonTitle, role: .destructive)
+                        {
                             dismiss()
                             doPitcherAddView = false
                             doHaptics ? cancelAddPitcherHapticToggle.toggle() : nil
-                        },
-                              secondaryButton: .cancel(Text("No")) {
                         }
-                        )
+                        Button("No")
+                        {
+                            
+                        }
+                    } message: {
+                        Text(ConstantsConfirmationDialogs.cancelAddPitcherConfirmationDialogMessage)
                     }
                     .sensoryFeedback(.error, trigger: cancelAddPitcherHapticToggle)
                 }
@@ -103,6 +104,7 @@ struct PitchersAddView: View {
                         } label: {
                             Image(systemName: "checkmark")
                         }
+                        .buttonStyle(.borderedProminent)
                         .sensoryFeedback(.impact(weight: .medium), trigger: closeAddPitcherHapticToggle)
                     }
                 }

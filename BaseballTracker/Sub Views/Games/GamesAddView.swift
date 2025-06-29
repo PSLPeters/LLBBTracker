@@ -73,17 +73,18 @@ struct GamesAddView: View {
                     } label: {
                         Image(systemName: "xmark")
                     }
-                    .alert(isPresented: $isShowingCloseAlert) {
-                        Alert(title: Text(ConstantsAlerts.cancelAddGameAlertTitle),
-                              message: Text(ConstantsAlerts.cancelAddGameAlertMessage),
-                              primaryButton: .destructive(Text(ConstantsAlerts.cancelAddGameAlertConfirmButtonTitle))
-                              {
+                    .confirmationDialog("Close Game", isPresented: $isShowingCloseAlert) {
+                        Button(ConstantsConfirmationDialogs.cancelAddGameConfirmationDialogConfirmButtonTitle, role: .destructive)
+                        {
                             dismiss()
                             doHaptics ? cancelAddGameHapticToggle.toggle() : nil
-                        },
-                              secondaryButton: .cancel(Text("No")) {
                         }
-                        )
+                        Button("No")
+                        {
+                            
+                        }
+                    } message: {
+                        Text(ConstantsConfirmationDialogs.cancelAddGameConfirmationDialogMessage)
                     }
                     .sensoryFeedback(.error, trigger: cancelAddGameHapticToggle)
                 }
@@ -104,6 +105,7 @@ struct GamesAddView: View {
                         } label: {
                             Image(systemName: "checkmark")
                         }
+                        .buttonStyle(.borderedProminent)
                         .sensoryFeedback(.impact(weight: .medium), trigger: closeAddGameHapticToggle)
                     }
                 }

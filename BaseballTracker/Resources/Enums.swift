@@ -33,14 +33,12 @@ enum ConstantsSettings {
 }
 
 // MARK: Alert Constants
-enum ConstantsAlerts {
-    static let cancelAddPitcherAlertTitle = "Close Pitcher?"
-    static let cancelAddPitcherAlertMessage = "Pitcher information has been entered.\n\nAre you sure you would like to close this Pitcher and lose this unsaved information?"
-    static let cancelAddPitcherAlertConfirmButtonTitle = "Yes"
+enum ConstantsConfirmationDialogs {
+    static let cancelAddPitcherConfirmationDialogMessage = "Pitcher information has been entered.\n\nAre you sure you would like to close this Pitcher and lose this unsaved information?"
+    static let cancelAddPitcherConfirmationDialogConfirmButtonTitle = "Yes"
     
-    static let cancelAddGameAlertTitle = "Close Game?"
-    static let cancelAddGameAlertMessage = "Game information has been entered.\n\nAre you sure you would like to close this Game and lose this unsaved information?"
-    static let cancelAddGameAlertConfirmButtonTitle = "Yes"
+    static let cancelAddGameConfirmationDialogMessage = "Game information has been entered.\n\nAre you sure you would like to close this Game and lose this unsaved information?"
+    static let cancelAddGameConfirmationDialogConfirmButtonTitle = "Yes"
 }
 
 // MARK: Focus Constants
