@@ -17,7 +17,7 @@ struct ReleaseNotesView: View {
         ScrollView {
             Text(
             """
-            **Build 1.2 (1)**:
+            **Build 1.3 (0)**:
             - Added new Default Tab functionality to the Settings\\Appearance section.
             
             **Build 1.2 (0)**:
