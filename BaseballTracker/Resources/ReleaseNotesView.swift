@@ -17,6 +17,9 @@ struct ReleaseNotesView: View {
         ScrollView {
             Text(
             """
+            **Build 1.2 (1)**:
+            - Added new Default Tab functionality to the Settings\\Appearance section.
+            
             **Build 1.2 (0)**:
             - Welcome to iOS 26! Updated elements throughout the app to support Liquid Glass!
             - Changed Alerts to ConfirmationDialogs to utilize the iOS 26 design change making the selection easier for users.

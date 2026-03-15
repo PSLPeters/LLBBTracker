@@ -14,6 +14,7 @@ struct SettingsView: View {
     @AppStorage("selectedColorScheme") private var selectedColorScheme = "System"
     @AppStorage("selectedAppTintIndex") var selectedAppTintIndex = 0
     @AppStorage("selectedAppIconIndex") private var selectedAppIconIndex = 0
+    @AppStorage("selectedDefaultTabIndex") private var selectedDefaultTabIndex = 0
     @AppStorage("selectedPitcherColumnIndex") var selectedPitcherColumnIndex = 0
     @AppStorage("selectedGameColumnIndex") var selectedGameColumnIndex = 0
     
@@ -105,6 +106,18 @@ struct SettingsView: View {
                                 .foregroundStyle(.secondary)
                         }
                     }
+                    Picker("Default Tab", selection: $selectedDefaultTabIndex) {
+                        ForEach(arrDefaultTabs.indices, id:\.self) { index in
+                            let activeDefaultTab = arrDefaultTabs[index]
+                            HStack {
+                                Text(activeDefaultTab.image)
+                                    .frame(width: 30)
+                                Text(activeDefaultTab.name)
+                            }
+                            .tag(index)
+                        }
+                    }
+                    .pickerStyle(.navigationLink)
                 }
                 .sensoryFeedback(.impact(flexibility: .soft, intensity: hapticsIntensity), trigger: isExpandedAppearance)
                 

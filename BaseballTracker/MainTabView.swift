@@ -29,6 +29,7 @@ struct StartTabView: View {
     @AppStorage("selectedColorScheme") private var selectedColorScheme = "System"
     @AppStorage("selectedAppTintIndex") var selectedAppTintIndex = 0
     @AppStorage("selectedMainTab") private var selectedMainTab = ""
+    @AppStorage("selectedDefaultTabIndex") private var selectedDefaultTabIndex = 0
     @AppStorage("doHaptics") private var doHaptics = true
     
     // MARK: Body
@@ -37,6 +38,15 @@ struct StartTabView: View {
         // MARK: Calculated variables
         var hapticsIntensity: Double {
             doHaptics ? 1.0 : 0.0
+        }
+        
+        var defaultMainTab: String {
+            switch (arrDefaultTabs[selectedDefaultTabIndex].name) {
+            case "Remember Selection":
+                return selectedMainTab
+            default:
+                return arrDefaultTabs[selectedDefaultTabIndex].name
+            }
         }
         
         TabView(selection: $selectedMainTab) {
@@ -61,6 +71,9 @@ struct StartTabView: View {
         .sensoryFeedback(.impact(flexibility: .solid, intensity: hapticsIntensity), trigger: selectedMainTab)
         .tint(arrAppTints[selectedAppTintIndex].color)
         .preferredColorScheme(selectedColorScheme == "System" ? nil : selectedColorScheme == "Dark" ? .dark : .light)
+        .onAppear {
+            selectedMainTab = defaultMainTab
+        }
     }
 }
 

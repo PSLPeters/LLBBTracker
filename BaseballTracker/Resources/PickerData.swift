@@ -134,3 +134,18 @@ let arrGameColumns =
         gameColumn(name: "Opponent Runs", image: Image(systemName: "number.circle.fill")),
         gameColumn(name: "Win/Loss", image: Image(systemName: "baseball.diamond.bases")),
     ]
+
+// MARK: Default Tab
+struct defaultTab : Identifiable {
+    let id = UUID()
+    let name : String
+    let image : Image
+}
+
+let arrDefaultTabs =
+    [
+        defaultTab(name: "Remember Selection", image: Image(systemName: "brain.filled.head.profile")),
+        defaultTab(name: "Pitchers", image: Image(systemName: "baseball.fill")),
+        defaultTab(name: "Games", image: Image(systemName: "baseball.diamond.bases.outs.indicator")),
+        defaultTab(name: "Settings", image: Image(systemName: "gear"))
+    ]
